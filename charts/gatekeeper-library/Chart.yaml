@@ -1,0 +1,12 @@
+apiVersion: v2
+name: gatekeeper-library
+description: Library collection of gateeper constraints
+home: https://github.com/xenitab/gatekeeper-library
+maintainers:
+  - name: Philip Laine
+    email: philip.laine@xenit.se
+
+type: application
+
+version: v0.1.0
+appVersion: v0.1.0

@@ -1,0 +1,4 @@
+{{- $files := .Files }}
+{{- range .Values.constraints  }}
+{{ $files.Get (printf "library/%v.yaml" .kind) }}
+{{- end }}

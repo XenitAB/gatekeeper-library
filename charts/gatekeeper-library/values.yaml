@@ -1,0 +1,14 @@
+# Prefix to append before resource names
+namePrefix: ""
+
+# Constraints to include
+constraints:
+  - kind: k8srequiredannotations
+    name: foobar
+    enforcementAction: deny
+    parameters:
+      message: "All ingress objects must have the annotation `kubernetes.io/ingress.class:` with the value `nginx` or `nginx-internal`"
+      annotations:
+        - key: kubernetes.io/ingress.class
+          allowedRegex: "^nginx$|^nginx-internal$"
+
