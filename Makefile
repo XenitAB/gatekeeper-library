@@ -13,7 +13,7 @@ test: fmt
 
 .ONESHELL: generate
 .SILENT: generate
-generate: test
+generate:
 	GENERATED=./charts/gatekeeper-library/generated
 	DEFAULTS=$$GENERATED/defaults.yaml
 	LIBRARY=$$(ls -d ./library/*/)
