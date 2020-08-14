@@ -17,3 +17,7 @@ jobs:
           tar xzf kustomize_v3.8.1_linux_amd64.tar.gz
           sudo mv kustomize /bin/kustomize
           make generate
+          if [ -n "$(git status --porcelain)" ]; then
+            exit 1
+          fi
+          echo "All changes generated"
