@@ -29,6 +29,3 @@ generate: test
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done
-
-docs:
-	helm-docs
