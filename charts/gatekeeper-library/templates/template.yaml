@@ -1,4 +1,10 @@
-{{- $files := .Files }}
+{{- $kinds := list }}
 {{- range .Values.constraints  }}
-{{ $files.Get (printf "library/%v.yaml" .kind) }}
+{{ $kinds = append $kinds .kind }}
+{{- end }}
+
+{{- $files := .Files }}
+{{- range $kinds | uniq }}
+{{ $files.Get (printf "generated/%v.yaml" .) }}
+---
 {{- end }}

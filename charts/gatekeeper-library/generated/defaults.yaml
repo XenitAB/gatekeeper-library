@@ -1,8 +1,4 @@
-apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequiredAnnotations
-metadata:
-  name: required-annotations
-spec:
+k8srequiredannotations:
   match:
     kinds:
       - apiGroups: [""]
@@ -10,3 +6,8 @@ spec:
   parameters:
     message: "Resource does not contain the required annotation"
     annotations: []
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]

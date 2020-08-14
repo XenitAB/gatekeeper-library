@@ -1,12 +1,15 @@
+{{- $defaultValues := $.Files.Get "generated/defaults.yaml" | toString | fromYaml }}
+
 {{- range .Values.constraints }}
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: {{ .kind }}
+kind: {{ required "Constraint kind needs to be set" .kind }}
 metadata:
-  name: {{ .name }}
+  name: {{ required "Constraint name needs to be set" .name }}
 spec:
   enforcementAction: {{ .enforcementAction | default "deny" }}
-  match: {{- toYaml .match | default (include "gatekeeper-library.defaultMatch" .)  | nindent 4 }}
+  match: {{ .match | default (toYaml (get $defaultValues .kind).match) | nindent 4 }}
   {{- with .parameters }}
   parameters: {{- toYaml . | nindent 4 }}
   {{- end }}
+---
 {{- end }}

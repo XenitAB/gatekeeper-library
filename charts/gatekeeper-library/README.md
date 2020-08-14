@@ -4,7 +4,7 @@ Library collection of gateeper constraints
 
 Current chart version is `v0.1.0`
 
-
+Source code can be found [here](https://github.com/xenitab/gatekeeper-library)
 
 
 
@@ -12,5 +12,6 @@ Current chart version is `v0.1.0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| fullnameOverride | string | `""` |  |
-| nameOverride | string | `""` |  |
+| constraints | list | `[{"kind":"k8srequiredannotations"}]` | Constraints to create |
+| constraints[0].kind | string | `"k8srequiredannotations"` | foobar |
+| namePrefix | string | `""` | Prefix to append before resource names |
