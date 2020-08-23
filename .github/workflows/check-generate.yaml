@@ -19,6 +19,7 @@ jobs:
 
           echo "Generating files"
           make generate
+          echo "$(git status --porcelain)"
           if [ -z "$(git status --porcelain)" ]; then
             echo "Everything looks good"
             exit 0
