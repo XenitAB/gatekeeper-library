@@ -15,11 +15,11 @@ jobs:
           sudo mv yq_linux_amd64 /bin/yq
           wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.1/kustomize_v3.8.1_linux_amd64.tar.gz
           tar xzf kustomize_v3.8.1_linux_amd64.tar.gz
+          rm kustomize_v3.8.1_linux_amd64.tar.gz
           sudo mv kustomize /bin/kustomize
 
           echo "Generating files"
           make generate
-          echo "$(git status --porcelain)"
           if [ -z "$(git status --porcelain)" ]; then
             echo "Everything looks good"
             exit 0
