@@ -9,19 +9,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Run Makefile
+        shell: bash
         run: |
-          wget https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
+          wget -q https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
           chmod +x yq_linux_amd64
           sudo mv yq_linux_amd64 /bin/yq
-          wget https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.1/kustomize_v3.8.1_linux_amd64.tar.gz
+          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.1/kustomize_v3.8.1_linux_amd64.tar.gz
           tar xzf kustomize_v3.8.1_linux_amd64.tar.gz
           sudo mv kustomize /bin/kustomize
 
+          echo "Generating files"
           make generate
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No missing generated changes"
+            echo "Everything looks good"
             exit 0
           else
-            echo "Missing generated changes"
+            echo "All changes have not been generated"
             exit 1
           fi
