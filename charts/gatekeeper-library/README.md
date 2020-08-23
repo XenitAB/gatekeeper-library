@@ -1,17 +1,13 @@
-gatekeeper-library
-==================
-Library collection of gateeper constraints
+# gatekeeper-library
+Library of gateeper constraints.
 
-Current chart version is `v0.1.0`
-
-Source code can be found [here](https://github.com/xenitab/gatekeeper-library)
-
-
-
-## Chart Values
+## Configuration
+The following table lists the configurable parameters of the gateeper-library chart and their default values.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| constraints | list | `[{"kind":"k8srequiredannotations"}]` | Constraints to create |
-| constraints[0].kind | string | `"k8srequiredannotations"` | foobar |
 | namePrefix | string | `""` | Prefix to append before resource names |
+| constraints | list | `[]` | The constraints that should be created |
+| constraints[].kind | string | `""` | Kind of the constraint |
+| constraints[].name | string | `""` | Name of the constraint, should be unique in the list |
+| constraints[].parameters | list | `[]` | Additional parameters to pass to the constraint |

@@ -1,7 +1,4 @@
-# namePrefix -- Prefix to append before resource names
 namePrefix: ""
-
-# constraints -- Constraints to create
 constraints: []
   #- kind: k8srequiredannotations
   #  name: foobar
