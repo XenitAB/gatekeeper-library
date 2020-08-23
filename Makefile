@@ -13,7 +13,8 @@ test: fmt
 
 .ONESHELL: generate
 .SILENT: generate
-generate: test
+generate:
+	set -e
 	GENERATED=./charts/gatekeeper-library/generated
 	DEFAULTS=$$GENERATED/defaults.yaml
 	LIBRARY=$$(ls -d ./library/*/)
@@ -29,6 +30,3 @@ generate: test
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done
-
-docs:
-	helm-docs
