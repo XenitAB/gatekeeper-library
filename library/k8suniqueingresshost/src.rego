@@ -13,5 +13,5 @@ violation[{"msg": msg}] {
 	re_match("^(extensions|networking.k8s.io)/.+$", otherapiversion)
 	other.spec.rules[_].host == host
 	not identical(other, input.review)
-	msg := sprintf("ingresss host conflicts with an existing ingress <%v>", [host])
+	msg := sprintf("ingress host conflicts with an existing ingress <%v>", [host])
 }
