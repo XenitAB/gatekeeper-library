@@ -1,4 +1,4 @@
-name: check-generate
+name: opa
 on:
   push:
     branches:
@@ -31,3 +31,10 @@ jobs:
             echo "All changes have not been generated"
             exit 1
           fi
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Run opa test
+      uses: b4b4r07/action-opa@master
