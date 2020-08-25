@@ -5,10 +5,10 @@
 
 SHELL:=/bin/bash
 
-fmt:
+opa-fmt:
 	opa fmt -w library
 
-test: fmt
+opa-test: fmt
 	opa test library --ignore *.yaml
 
 .ONESHELL: generate
@@ -30,3 +30,9 @@ generate:
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done
+
+helm-lint:
+	helm lint charts/gatekeeper-library
+
+helm-test:
+	helm unittest --helm3 charts/gatekeeper-library

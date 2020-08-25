@@ -17,4 +17,18 @@ jobs:
         with:
           version: "v3.3.0"
       - name: Run lint
-        run: helm lint charts/gatekeeper-library
+        run: make helm-lint
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: "v3.3.0"
+      - name: Install Helm plugin
+        run: helm plugin install https://github.com/quintush/helm-unittest
+      - name: Run test
+        run: make helm-test
+
