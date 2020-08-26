@@ -1,17 +1,18 @@
-gatekeeper-library
-==================
-Library collection of gateeper constraints
+# gatekeeper-library
+Library of gatekeeper constraints.
 
-Current chart version is `v0.1.0`
-
-Source code can be found [here](https://github.com/xenitab/gatekeeper-library)
-
-
-
-## Chart Values
+## Configuration
+The following table lists the configurable parameters of the gatekeeper-library chart and their default values.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| constraints | list | `[{"kind":"k8srequiredannotations"}]` | Constraints to create |
-| constraints[0].kind | string | `"k8srequiredannotations"` | foobar |
 | namePrefix | string | `""` | Prefix to append before resource names |
+| constraints | list | `[]` | The constraints that should be created |
+| constraints[].kind | string | `""` | Kind of the constraint |
+| constraints[].name | string | `""` | Name of the constraint, should be unique in the list |
+| constraints[].parameters | list | `[]` | Additional parameters to pass to the constraint |
+
+## Testing
+The chart is tested using the [helm-unittest](https://github.com/quintush/helm-unittest) plugin. The plugin allows
+testing expected output from the chart without requiring a Kubernetes cluster. All tests should be located in the
+[tests](./tests) directory and should have the `_test` suffix in the filename.

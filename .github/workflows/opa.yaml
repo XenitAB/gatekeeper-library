@@ -1,23 +1,30 @@
-name: check-generate
-
-on: push
-
+name: opa
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 jobs:
-  build:
+  check-generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-      - name: Run Makefile
+      - name: Install yq
         run: |
           wget -q https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
           chmod +x yq_linux_amd64
           sudo mv yq_linux_amd64 /bin/yq
+      - name: Install kustomize
+        run: |
           wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.1/kustomize_v3.8.1_linux_amd64.tar.gz
           tar xzf kustomize_v3.8.1_linux_amd64.tar.gz
           rm kustomize_v3.8.1_linux_amd64.tar.gz
           sudo mv kustomize /bin/kustomize
-
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Run check
+        run: |
           echo "Generating files"
           make generate
           if [ -z "$(git status --porcelain)" ]; then
@@ -27,3 +34,10 @@ jobs:
             echo "All changes have not been generated"
             exit 1
           fi
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Run opa test
+      uses: b4b4r07/action-opa@master
