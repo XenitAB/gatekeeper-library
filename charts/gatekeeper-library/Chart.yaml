@@ -3,5 +3,5 @@ name: gatekeeper-library
 description: Library of gateeper constraints
 home: https://github.com/xenitab/gatekeeper-library
 type: application
-version: v0.1.0
-appVersion: v0.1.0
+version: v0.1.1
+appVersion: v0.1.1
