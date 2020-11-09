@@ -10,7 +10,7 @@ policies but it will require you to write your own constraints from scratch. Whi
 sane default values for most parameters.
 
 Follow the instruction in one of the two tutorials:
-* [Get started with Helm](./charts/gatekeeper-library)
+* [Get started with Helm](./charts)
 * [Get started with Kustomize](./deploy)
 
 ## Development

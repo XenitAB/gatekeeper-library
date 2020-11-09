@@ -1,0 +1,17 @@
+suite: same-kind
+templates:
+  - template.yaml
+tests:
+  - it: should work
+    set:
+      constraints:
+        - kind: k8srequiredannotations
+        - kind: k8srequiredannotations
+    asserts:
+      - equal:
+          path: metadata.name
+          value: k8srequiredannotations
+        template: template.yaml
+      - hasDocuments:
+          count: 1
+        template: template.yaml

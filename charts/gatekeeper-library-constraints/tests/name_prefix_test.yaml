@@ -1,7 +1,6 @@
 suite: name-prefix
 templates:
   - constraint.yaml
-  - template.yaml
 tests:
   - it: should work
     set:

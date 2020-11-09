@@ -1,0 +1,18 @@
+suite: basic
+templates:
+  - constraint.yaml
+tests:
+  - it: should work
+    set:
+      constraints:
+        - kind: k8srequiredannotations
+          name: foobar
+          parameters:
+            annotations:
+              - key: "foo"
+                allowedRegex: "bar"
+    asserts:
+      - equal:
+          path: metadata.name
+          value: foobar
+        template: constraint.yaml
