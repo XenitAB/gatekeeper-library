@@ -1,11 +1,11 @@
 name: helm
+
 on:
+  pull_request:
   push:
     branches:
-    - master
-  pull_request:
-    branches:
-    - master
+      - master
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: "v3.3.0"
+          version: "v3.4.0"
       - name: Run lint
         run: make helm-lint
   test:
@@ -26,9 +26,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: "v3.3.0"
-      - name: Install Helm plugin
-        run: helm plugin install https://github.com/quintush/helm-unittest
-      - name: Run test
+          version: "v3.4.0"
+      - name: Run Helm test
         run: make helm-test
 

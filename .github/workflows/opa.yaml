@@ -1,25 +1,25 @@
 name: opa
+
 on:
+  pull_request:
   push:
     branches:
-    - master
-  pull_request:
-    branches:
-    - master
+      - master
+
 jobs:
   check-generate:
     runs-on: ubuntu-latest
     steps:
       - name: Install yq
         run: |
-          wget -q https://github.com/mikefarah/yq/releases/download/3.3.2/yq_linux_amd64
+          wget -q https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
           chmod +x yq_linux_amd64
           sudo mv yq_linux_amd64 /bin/yq
       - name: Install kustomize
         run: |
-          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.1/kustomize_v3.8.1_linux_amd64.tar.gz
-          tar xzf kustomize_v3.8.1_linux_amd64.tar.gz
-          rm kustomize_v3.8.1_linux_amd64.tar.gz
+          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.6/kustomize_v3.8.6_linux_amd64.tar.gz
+          tar xzf kustomize_v3.8.6_linux_amd64.tar.gz
+          rm kustomize_v3.8.6_linux_amd64.tar.gz
           sudo mv kustomize /bin/kustomize
       - name: Checkout
         uses: actions/checkout@master
@@ -39,5 +39,5 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    - name: Run opa test
+    - name: Run OPA tests
       uses: b4b4r07/action-opa@master
