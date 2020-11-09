@@ -1,4 +1,9 @@
 
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
 k8srequiredannotations:
   match:
     kinds:

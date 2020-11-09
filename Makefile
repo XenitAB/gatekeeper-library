@@ -1,9 +1,6 @@
-# Dependencies:
-# * opa
-# * kustomize
-# * yq
-
 SHELL:=/bin/bash
+
+all: opa-test helm-test generate
 
 opa-fmt:
 	opa fmt -w library

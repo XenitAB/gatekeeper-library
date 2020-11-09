@@ -1,0 +1,12 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: k8shttpsonly
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sHttpsOnly
+  targets:
+  - rego: "package k8shttpsonly\n\nviolation[{\"msg\": msg}] {\n\tingress := input.review.object\n\tnot https_complete(ingress)\n\tmsg := \"Ingress must be https, TLS configuration is required\"\n}\n\nhttps_complete(ingress) {\n\tingress.spec.tls\n\tcount(ingress.spec.tls) > 0\n}"
+    target: admission.k8s.gatekeeper.sh
