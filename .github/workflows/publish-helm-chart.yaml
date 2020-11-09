@@ -1,7 +1,10 @@
 name: publish-helm-chart
+
 on:
   release:
-    types: [published]
+    types:
+      - published
+
 jobs:
   release:
     runs-on: ubuntu-latest
