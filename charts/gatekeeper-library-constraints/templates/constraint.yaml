@@ -8,7 +8,7 @@ metadata:
   name: {{ $prefix }}{{ required "Constraint name needs to be set" .name }}
 spec:
   enforcementAction: {{ .enforcementAction | default "deny" }}
-  match: {{ .match | default (get $defaultValues .kind).match | toYaml | nindent 4 }}
+  match: {{ .match | default (get $defaultValues (lower .kind)).match | toYaml | nindent 4 }}
   {{- with .parameters }}
   parameters: {{- toYaml . | nindent 4 }}
   {{- end }}
