@@ -8,7 +8,7 @@ SHELL:=/bin/bash
 opa-fmt:
 	opa fmt -w library
 
-opa-test: fmt
+opa-test: opa-fmt
 	opa test library --ignore *.yaml
 
 .ONESHELL: generate
