@@ -18,6 +18,6 @@ jobs:
           sudo mv kustomize /bin/kustomize
       - name: Checkout
         uses: actions/checkout@master
-      - name: Test kustomize build
+      - name: Run Kustomize build
         run: |
           kustomize build ./deploy
