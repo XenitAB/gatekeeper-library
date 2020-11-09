@@ -3,7 +3,7 @@ entries:
   gatekeeper-library:
   - apiVersion: v2
     appVersion: v0.2.1
-    created: "2020-11-09T12:59:54.337342656Z"
+    created: "2020-11-09T13:25:59.853326204Z"
     description: Library of gateeper constraints
     digest: a300f2e42fb91b8d8dbde3a61e407ae54432d6d846877107b9675956e59b1601
     home: https://github.com/xenitab/gatekeeper-library
@@ -14,7 +14,7 @@ entries:
     version: v0.2.1
   - apiVersion: v2
     appVersion: v0.1.1
-    created: "2020-11-09T12:59:54.337087456Z"
+    created: "2020-11-09T13:25:59.852912599Z"
     description: Library of gateeper constraints
     digest: 14cfbadde051532a06bfa3765d31e6ce67623b92c880b4a7dd63b96d64051adf
     home: https://github.com/xenitab/gatekeeper-library
@@ -25,7 +25,7 @@ entries:
     version: v0.1.1
   - apiVersion: v2
     appVersion: v0.1.0
-    created: "2020-11-09T12:59:54.336844755Z"
+    created: "2020-11-09T13:25:59.852449993Z"
     description: Library of gateeper constraints
     digest: 0afc3241b35e54a2608daad5975265a6ecd746282a080df6a6d8f57dce5c7792
     home: https://github.com/xenitab/gatekeeper-library
@@ -34,4 +34,28 @@ entries:
     urls:
     - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-v0.1.0.tgz
     version: v0.1.0
-generated: "2020-11-09T12:59:54.336399554Z"
+  gatekeeper-library-constraints:
+  - apiVersion: v2
+    appVersion: v0.2.2
+    created: "2020-11-09T13:25:59.851728284Z"
+    description: Library of gateeper constraints
+    digest: 05fd7f2529624d1e97efc86708cfca94afa040022db12030c9a304a40a776c42
+    home: https://github.com/xenitab/gatekeeper-library
+    name: gatekeeper-library-constraints
+    type: application
+    urls:
+    - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-constraints-v0.2.2.tgz
+    version: v0.2.2
+  gatekeeper-library-templates:
+  - apiVersion: v2
+    appVersion: v0.2.2
+    created: "2020-11-09T13:25:59.852076989Z"
+    description: Library of gateeper constraints
+    digest: 33acd50ae02c2a9a73b992406ba6018867c74ebdfe32ff586cdb9d7a3d909cbc
+    home: https://github.com/xenitab/gatekeeper-library
+    name: gatekeeper-library-templates
+    type: application
+    urls:
+    - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-templates-v0.2.2.tgz
+    version: v0.2.2
+generated: "2020-11-09T13:25:59.851200378Z"
