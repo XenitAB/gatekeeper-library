@@ -5,6 +5,6 @@
 
 {{- $files := .Files }}
 {{- range $kinds | uniq }}
-{{ $files.Get (printf "generated/%v.yaml" .) }}
+{{ $files.Get (printf "generated/%v.yaml" (lower .)) }}
 ---
 {{- end }}
