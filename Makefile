@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 
-all: opa-test helm-test generate
+all: opa-fmt opa-test generate helm-lint helm-test
 
 opa-fmt:
 	opa fmt -w library
@@ -20,10 +20,22 @@ generate:
 	LIBRARY=$$(ls -d ./library/*/)
 	for D in $$LIBRARY
 	do
-		NAME=$$(basename $$D)
+		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
 		SRC=$$(cat $$D/src.rego)
 		yq w -i $$D/template.yaml "spec.targets[0].rego" "$$SRC"
 		kustomize build $$D > $$TEMPLATES_GENERATED/$$NAME.yaml
+		echo "$$NAME:" >> $$DEFAULTS
+		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
+	done
+	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
+	for D in $$EXTERNAL_LIBRARY
+	do
+		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
+		if test -f $$D/sync.yaml; then
+			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$D/sync.yaml> $$TEMPLATES_GENERATED/$$NAME.yaml
+		else
+			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
+		fi
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done

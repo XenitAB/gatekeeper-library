@@ -8,5 +8,35 @@ spec:
       names:
         kind: K8sHttpsOnly
   targets:
-  - rego: "package k8shttpsonly\n\nviolation[{\"msg\": msg}] {\n\tingress := input.review.object\n\tnot https_complete(ingress)\n\tmsg := \"Ingress must be https, TLS configuration is required\"\n}\n\nhttps_complete(ingress) {\n\tingress.spec.tls\n\tcount(ingress.spec.tls) > 0\n}"
-    target: admission.k8s.gatekeeper.sh
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8shttpsonly
+
+        violation[{"msg": msg}] {
+          input.review.kind.kind == "Ingress"
+          re_match("^(extensions|networking.k8s.io)$", input.review.kind.group)
+          ingress := input.review.object
+          not https_complete(ingress)
+          msg := sprintf("Ingress should be https. tls configuration and allow-http=false annotation are required for %v", [ingress.metadata.name])
+        }
+
+        https_complete(ingress) = true {
+          ingress.spec["tls"]
+          count(ingress.spec.tls) > 0
+          ingress.metadata.annotations["kubernetes.io/ingress.allow-http"] == "false"
+        }
+---
+apiVersion: config.gatekeeper.sh/v1alpha1
+kind: Config
+metadata:
+  name: config
+  namespace: "gatekeeper-system"
+spec:
+  sync:
+    syncOnly:
+      - group: "extensions"
+        version: "v1beta1"
+        kind: "Ingress"
+      - group: "networking.k8s.io"
+        version: "v1beta1"
+        kind: "Ingress"

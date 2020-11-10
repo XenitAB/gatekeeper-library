@@ -23,6 +23,8 @@ jobs:
           sudo mv kustomize /bin/kustomize
       - name: Checkout
         uses: actions/checkout@master
+        with:
+          submodules: true
       - name: Run check
         run: |
           echo "Generating files"
