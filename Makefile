@@ -27,6 +27,18 @@ generate:
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done
+	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
+	for D in $$EXTERNAL_LIBRARY
+	do
+		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
+		if test -f $$D/sync.yaml; then
+			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$D/sync.yaml> $$TEMPLATES_GENERATED/$$NAME.yaml
+		else
+			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
+		fi
+		echo "$$NAME:" >> $$DEFAULTS
+		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
+	done
 
 helm-lint:
 	helm lint charts/gatekeeper-library-constraints
