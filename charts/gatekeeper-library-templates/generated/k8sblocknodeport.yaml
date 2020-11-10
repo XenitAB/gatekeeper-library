@@ -9,7 +9,7 @@ spec:
         kind: K8sBlockNodePort
   targets:
     - target: admission.k8s.gatekeeper.sh
-      rego: |-
+      rego: |
         package k8sblocknodeport
 
         violation[{"msg": msg}] {

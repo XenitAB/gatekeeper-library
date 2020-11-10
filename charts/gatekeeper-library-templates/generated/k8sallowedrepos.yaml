@@ -17,7 +17,7 @@ spec:
                 type: string
   targets:
     - target: admission.k8s.gatekeeper.sh
-      rego: |-
+      rego: |
         package k8sallowedrepos
 
         violation[{"msg": msg}] {
