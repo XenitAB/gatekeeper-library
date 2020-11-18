@@ -1,4 +1,9 @@
 
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
 k8srequiredannotations:
   match:
     kinds:
