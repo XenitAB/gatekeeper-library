@@ -5,7 +5,7 @@ all: opa-fmt opa-test generate helm-lint helm-test
 opa-fmt:
 	opa fmt -w library
 
-opa-test: opa-fmt
+opa-test:
 	opa test library --ignore *.yaml
 
 .ONESHELL: generate

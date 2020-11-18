@@ -1,0 +1,9 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: AzureIdentityFormat
+metadata:
+  name: azure-identity-format
+spec:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
