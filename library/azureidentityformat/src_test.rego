@@ -7,7 +7,8 @@ test_input_valid {
 			"metadata": {"name": "some-name"},
 			"spec": {
 				"type": 0,
-				"resourceID": "/subscriptions/<subid>/resourcegroups/<resourcegroup>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<name>",
+				"resourceID": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity",
+				"clientID": "00000000-0000-0000-0000-000000000000",
 			},
 		},
 	}
@@ -25,6 +26,7 @@ test_input_invalid {
 			"spec": {
 				"type": 0,
 				"resourceID": "foobar",
+				"clientID": "00000000-0000-0000-0000-000000000000",
 			},
 		},
 	}
