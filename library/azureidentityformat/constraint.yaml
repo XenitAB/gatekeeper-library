@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: azureidentityformat
+kind: AzureIdentityFormat
 metadata:
-  name: azureidentityformatconstraint
+  name: azure-identity-format
 spec:
   match:
     kinds:

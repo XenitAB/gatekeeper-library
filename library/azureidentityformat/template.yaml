@@ -6,10 +6,10 @@ spec:
   crd:
     spec:
       names:
-        kind: azureidentityformat
-        listKind: azureidentityformatList
-        plural: azureidentityformat
-        singular: azureidentityformat
+        kind: AzureIdentityFormat
+        listKind: AzureIdentityFormatList
+        plural: AzureIdentityFormat
+        singular: AzureIdentityFormat
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |-
