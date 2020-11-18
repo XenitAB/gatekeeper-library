@@ -4,6 +4,11 @@ azureidentityformat:
     kinds:
       - apiGroups: ["aadpodidentity.k8s.io"]
         kinds: ["AzureIdentity"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8srequiredannotations:
   match:
     kinds:
