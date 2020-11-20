@@ -22,11 +22,6 @@ k8sallowedrepos:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-    namespaces:
-      - "production"
-  parameters:
-    repos:
-      - "only-this-repo"
 k8sblocknodeport:
   match:
     kinds:
@@ -37,16 +32,11 @@ k8scontainerlimits:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    cpu: "200m"
-    memory: "1Gi"
 k8scontainerratios:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    ratio: 2
 k8shttpsonly:
   match:
     kinds:
@@ -57,32 +47,24 @@ k8simagedigests:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-    namespaces:
-      - "digest-required"
 k8srequiredlabels:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Namespace"]
-  parameters:
-    message: "All namespaces must have an `owner` label that points to your company username"
-    labels:
-      - key: owner
-        allowedRegex: "^[a-zA-Z]+.agilebank.demo$"
 k8srequiredprobes:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    probes: ["readinessProbe", "livenessProbe"]
-    probeTypes: ["tcpSocket", "httpGet", "exec"]
 k8suniqueingresshost:
   match:
     kinds:
       - apiGroups: ["extensions", "networking.k8s.io"]
         kinds: ["Ingress"]
 k8suniqueserviceselector:
+  match:
+    kinds: {}
 k8spspallowprivilegeescalationcontainer:
   match:
     kinds:
@@ -93,56 +75,31 @@ k8spspapparmor:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    allowedProfiles:
-      - runtime/default
 k8spspcapabilities:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-    namespaces:
-      - "production"
-  parameters:
-    allowedCapabilities: ["something"]
-    requiredDropCapabilities: ["must_drop"]
 k8spspflexvolumes:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    allowedFlexVolumes: #[]
-      - driver: "example/lvm"
-      - driver: "example/cifs"
 k8spspforbiddensysctls:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    forbiddenSysctls:
-      # - "*" # * may be used to forbid all sysctls
-      - kernel.*
 k8spspfsgroup:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    rule: "MayRunAs" #"MustRunAs" #"MayRunAs", "RunAsAny"
-    ranges:
-      - min: 1
-        max: 1000
 k8spsphostfilesystem:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    allowedHostPaths:
-      - readOnly: true
-        pathPrefix: "/foo"
 k8spsphostnamespace:
   match:
     kinds:
@@ -153,10 +110,6 @@ k8spsphostnetworkingports:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    hostNetwork: true
-    min: 80
-    max: 9000
 k8spspprivilegedcontainer:
   match:
     kinds:
@@ -167,8 +120,6 @@ k8spspprocmount:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    procMount: Default
 k8spspreadonlyrootfilesystem:
   match:
     kinds:
@@ -179,60 +130,18 @@ k8spspseccomp:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    allowedProfiles:
-      - runtime/default
-      - docker/default
 k8spspselinuxv2:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    allowedSELinuxOptions:
-      - level: s0:c123,c456
-        role: object_r
-        type: svirt_sandbox_file_t
-        user: system_u
 k8spspallowedusers:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    runAsUser:
-      rule: MustRunAs # MustRunAsNonRoot # RunAsAny 
-      ranges:
-        - min: 100
-          max: 200
-    runAsGroup:
-      rule: MustRunAs # MayRunAs # RunAsAny 
-      ranges:
-        - min: 100
-          max: 200
-    supplementalGroups:
-      rule: MustRunAs # MayRunAs # RunAsAny 
-      ranges:
-        - min: 100
-          max: 200
-    fsGroup:
-      rule: MustRunAs # MayRunAs # RunAsAny 
-      ranges:
-        - min: 100
-          max: 200
 k8spspvolumetypes:
   match:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
-  parameters:
-    volumes:
-      # - "*" # * may be used to allow all volume types
-      - configMap
-      - emptyDir
-      - projected
-      - secret
-      - downwardAPI
-      - persistentVolumeClaim
-      #- hostPath #required for allowedHostPaths
-      - flexVolume #required for allowedFlexVolumes

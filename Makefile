@@ -8,8 +8,12 @@ opa-fmt:
 opa-test:
 	opa test library --ignore *.yaml
 
+update-submodule:
+	git submodule update --init --remote
+
 .ONESHELL: generate
-.SILENT: generate
+#.SILENT: generate
+#generate: update-submodule
 generate:
 	set -e
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
@@ -30,14 +34,14 @@ generate:
 	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
 	for D in $$EXTERNAL_LIBRARY
 	do
-		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
+		NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
 		if test -f $$D/sync.yaml; then
 			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$D/sync.yaml> $$TEMPLATES_GENERATED/$$NAME.yaml
 		else
 			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 		fi
-		echo "$$NAME:" >> $$DEFAULTS
-		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
+		SAMPLE=$$(ls $$D/samples/ | head -n 1)
+		yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$DEFAULTS
 	done
 
 helm-lint:
