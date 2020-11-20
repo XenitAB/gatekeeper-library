@@ -12,9 +12,8 @@ update-submodule:
 	git submodule update --init --remote
 
 .ONESHELL: generate
-#.SILENT: generate
-#generate: update-submodule
-generate:
+.SILENT: generate
+generate: update-submodule
 	set -e
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
 	CONTRAINTS_GENERATED=./charts/gatekeeper-library-constraints/generated
