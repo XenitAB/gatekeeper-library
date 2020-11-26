@@ -1,0 +1,11 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: FluxRequireServiceAccount
+metadata:
+  name: require-service-account
+spec:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
