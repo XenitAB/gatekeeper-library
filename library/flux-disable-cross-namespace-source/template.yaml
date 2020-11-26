@@ -1,0 +1,35 @@
+apiVersion: templates.gatekeeper.sh/v1beta1
+kind: ConstraintTemplate
+metadata:
+  name: fluxdisablecrossnamespacesource
+spec:
+  crd:
+    spec:
+      names:
+        kind: FluxDisableCrossNamespaceSource
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |-
+        package fluxdisablecrossnamespacesource
+
+        violation[{"msg": msg}] {
+        	check_kind(input.review.kind.kind)
+        	check_namespace(input.review.object.spec, input.review.metadata.namespace)
+        	msg := sprintf(`'%v' has to specify a serviceAccountName`, [input.review.kind.kind])
+        }
+
+        check_kind(kind) {
+        	kind == "HelmRelease"
+        }
+
+        check_kind(kind) {
+        	kind == "Kustomization"
+        }
+
+        check_namespace(spec, namespace) {
+        	spec.serviceAccountName == namespace
+        }
+
+        check_namespace(spec, namespace) {
+        	not spec.serviceAccountName
+        }
