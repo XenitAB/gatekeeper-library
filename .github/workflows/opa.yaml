@@ -1,11 +1,9 @@
 name: opa
-
 on:
   pull_request:
   push:
     branches:
       - master
-
 jobs:
   check-generate:
     runs-on: ubuntu-latest

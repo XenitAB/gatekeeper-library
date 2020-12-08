@@ -1,11 +1,9 @@
 name: kustomize
-
 on:
   pull_request:
   push:
     branches:
       - master
-
 jobs:
   test:
     runs-on: ubuntu-latest

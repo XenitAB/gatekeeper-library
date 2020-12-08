@@ -51,3 +51,7 @@ helm-test:
 	helm plugin install https://github.com/quintush/helm-unittest
 	helm unittest --helm3 charts/gatekeeper-library-constraints
 	helm unittest --helm3 charts/gatekeeper-library-templates
+
+.PHONY: e2e
+e2e:
+	./e2e/test.sh

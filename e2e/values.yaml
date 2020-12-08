@@ -1,0 +1,7 @@
+constraints:
+  - kind: k8srequiredannotations
+    name: foobar
+    parameters:
+      annotations:
+        - key: "foo"
+          allowedRegex: "bar"
