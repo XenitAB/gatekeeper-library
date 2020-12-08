@@ -54,4 +54,5 @@ helm-test:
 
 .PHONY: e2e
 e2e:
-	./e2e/test.sh
+	cd e2e
+	./test.sh

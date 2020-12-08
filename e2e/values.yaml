@@ -1,5 +1,5 @@
 constraints:
-  - kind: k8srequiredannotations
+  - kind: K8sRequiredAnnotations
     name: foobar
     parameters:
       annotations:
