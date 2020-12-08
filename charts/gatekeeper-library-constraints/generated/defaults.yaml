@@ -51,6 +51,11 @@ k8scontainerratios:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
 k8shttpsonly:
   match:
     kinds:
