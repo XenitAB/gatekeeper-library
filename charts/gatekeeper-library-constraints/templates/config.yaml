@@ -1,7 +1,7 @@
 apiVersion: config.gatekeeper.sh/v1alpha1
 kind: Config
 metadata:
-  name: gatekeeper-system
+  name: config
 spec:
   match:
     {{- toYaml .Values.exclude | nindent 4 }}
