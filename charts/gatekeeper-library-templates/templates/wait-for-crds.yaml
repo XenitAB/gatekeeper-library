@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-for-crds
+  annotations:
+    "helm.sh/hook": "post-install,post-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: wait-for-crds
+        image: bitnami/kubectl:1.19.4
+        command: ["sh", "-c", "kubectl wait --for condition=established --timeout=200s crd/k8srequiredannotations.constraints.gatekeeper.sh"]
