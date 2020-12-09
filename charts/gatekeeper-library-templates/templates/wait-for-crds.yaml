@@ -1,16 +1,55 @@
+{{- $kinds := list }}
+{{- range .Values.constraints  }}
+{{ $kinds = append $kinds .kind }}
+{{- end }}
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: wait-for-crds
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: wait-for-crds
+rules:
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: wait-for-crds
+roleRef:
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+  name: wait-for-crds
+subjects:
+- kind: ServiceAccount
+  name: wait-for-crds
+  namespace: {{ .Release.Namespace }}
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
   name: wait-for-crds
   annotations:
     "helm.sh/hook": "post-install,post-upgrade"
-    "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+    #"helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
 spec:
   template:
     spec:
       restartPolicy: OnFailure
       terminationGracePeriodSeconds: 0
+      serviceAccountName: wait-for-crds
       containers:
       - name: wait-for-crds
         image: bitnami/kubectl:1.19.4
-        command: ["sh", "-c", "kubectl wait --for condition=established --timeout=200s crd/k8srequiredannotations.constraints.gatekeeper.sh"]
+        command: ["sh", "-c", "timeout 3m bash -c 'until kubectl get crd {{ range $kinds | uniq }}{{ (lower .) }}.constraints.gatekeeper.sh {{ end }}; do sleep 1; done'"]

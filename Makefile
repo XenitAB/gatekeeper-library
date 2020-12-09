@@ -15,6 +15,7 @@ update-submodule:
 .SILENT: generate
 generate: update-submodule
 	set -e
+	TMP_DIR=$$(mktemp -d)
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
 	CONTRAINTS_GENERATED=./charts/gatekeeper-library-constraints/generated
 	mkdir -p $$TEMPLATES_GENERATED $$CONTRAINTS_GENERATED
@@ -35,7 +36,10 @@ generate: update-submodule
 	do
 		NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
 		if test -f $$D/sync.yaml; then
-			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$D/sync.yaml> $$TEMPLATES_GENERATED/$$NAME.yaml
+			cp $$D/sync.yaml $$TMP_DIR/$$NAME.yaml
+			yq w -i $$TMP_DIR/$$NAME.yaml "metadata.name" "$$NAME"
+			yq d -i $$TMP_DIR/$$NAME.yaml "metadata.namespace"
+			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$TMP_DIR/$$NAME.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 		else
 			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 		fi
