@@ -1,0 +1,5 @@
+constraints:
+  - kind: K8sHttpsOnly
+    name: https-only
+  - kind: K8sPodPriorityClass
+    name: pod-priority-class
