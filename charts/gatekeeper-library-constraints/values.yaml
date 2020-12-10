@@ -1,12 +1,8 @@
 namePrefix: ""
 constraints: []
-  #- kind: k8srequiredannotations
+  #- kind: K8sRequiredAnnotations
   #  name: foobar
   #  parameters:
   #    annotations:
   #      - key: "foo"
   #        allowedRegex: "bar"
-
-exclude:
-  - excludedNamespaces: ["kube-system", "gatekeeper-system"]
-    processes: ["*"]

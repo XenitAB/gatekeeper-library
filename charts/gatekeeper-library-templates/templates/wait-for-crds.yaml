@@ -59,5 +59,5 @@ spec:
       serviceAccountName: wait-for-crds
       containers:
       - name: wait-for-crds
-        image: bitnami/kubectl:1.19.4
+        image: quay.io/bitnami/kubectl:1.19.4
         command: ["sh", "-c", "timeout 3m bash -c 'until kubectl get crd {{ range $kinds | uniq }}{{ (lower .) }}.constraints.gatekeeper.sh {{ end }}; do sleep 1; done'"]

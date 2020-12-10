@@ -1,0 +1,19 @@
+suite: config
+templates:
+  - config.yaml
+tests:
+  - it: should include sync config
+    set:
+      constraints:
+        - kind: K8sUniqueIngressHost
+    asserts:
+      - equal:
+          path: spec.sync.syncOnly
+          value:
+            - group: extensions
+              kind: Ingress
+              version: v1beta1
+            - group: networking.k8s.io
+              kind: Ingress
+              version: v1beta1
+        template: config.yaml
