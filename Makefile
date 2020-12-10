@@ -15,12 +15,14 @@ update-submodule:
 .SILENT: generate
 generate: update-submodule
 	set -e
-	TMP_DIR=$$(mktemp -d)
+
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
 	CONTRAINTS_GENERATED=./charts/gatekeeper-library-constraints/generated
+	rm -r $$TEMPLATES_GENERATED $$CONSTRAINTS_GENERATED
 	mkdir -p $$TEMPLATES_GENERATED $$CONTRAINTS_GENERATED
 	DEFAULTS=$$CONTRAINTS_GENERATED/defaults.yaml
-	echo "" > $$DEFAULTS
+	touch $$DEFAULTS
+
 	LIBRARY=$$(ls -d ./library/*/)
 	for D in $$LIBRARY
 	do
@@ -31,20 +33,18 @@ generate: update-submodule
 		echo "$$NAME:" >> $$DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
 	done
+
 	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
 	for D in $$EXTERNAL_LIBRARY
 	do
 		NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
-		if test -f $$D/sync.yaml; then
-			cp $$D/sync.yaml $$TMP_DIR/$$NAME.yaml
-			yq w -i $$TMP_DIR/$$NAME.yaml "metadata.name" "$$NAME"
-			yq d -i $$TMP_DIR/$$NAME.yaml "metadata.namespace"
-			awk 'FNR==1 && NR!=1 {print "---"}{print}' $$D/template.yaml $$TMP_DIR/$$NAME.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
-		else
-			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
-		fi
+		cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 		SAMPLE=$$(ls $$D/samples/ | head -n 1)
 		yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$DEFAULTS
+		touch $$TEMPLATES_GENERATED/config-values.yaml
+		if test -f $$D/sync.yaml; then
+			yq r "$$D/sync.yaml" spec | yq p - $${NAME} >> $$TEMPLATES_GENERATED/config-values.yaml
+		fi
 	done
 
 helm-lint:

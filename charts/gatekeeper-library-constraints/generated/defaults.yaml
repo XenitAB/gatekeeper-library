@@ -1,4 +1,1818 @@
-
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+azureidentityformat:
+  match:
+    kinds:
+      - apiGroups: ["aadpodidentity.k8s.io"]
+        kinds: ["AzureIdentity"]
+fluxdisablecrossnamespacesource:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+fluxrequireserviceaccount:
+  match:
+    kinds:
+      - apiGroups: ["helm.toolkit.fluxcd.io"]
+        kinds: ["HelmRelease"]
+      - apiGroups: ["kustomize.toolkit.fluxcd.io"]
+        kinds: ["Kustomization"]
+k8spodpriorityclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: [""]
+  parameters:
+    message: "Resource does not contain the required annotation"
+    annotations: []
+k8sallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblocknodeport:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8scontainerlimits:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerratios:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sexternalips:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
+k8shttpsonly:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8simagedigests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8srequiredlabels:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+k8srequiredprobes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8suniqueingresshost:
+  match:
+    kinds:
+      - apiGroups: ["extensions", "networking.k8s.io"]
+        kinds: ["Ingress"]
+k8suniqueserviceselector:
+  match:
+    kinds: {}
+k8spspallowprivilegeescalationcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspapparmor:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspcapabilities:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspflexvolumes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspforbiddensysctls:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspfsgroup:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnamespace:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spsphostnetworkingports:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprivilegedcontainer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspprocmount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspreadonlyrootfilesystem:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspseccomp:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspselinuxv2:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspallowedusers:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8spspvolumetypes:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 azureidentityformat:
   match:
     kinds:

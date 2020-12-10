@@ -1,6 +1,7 @@
 suite: basic
 templates:
   - template.yaml
+  - config.yaml
 tests:
   - it: should work
     set:
@@ -11,3 +12,20 @@ tests:
           path: metadata.name
           value: k8srequiredannotations
         template: template.yaml
+      - equal:
+          path: metadata.name
+          value: config
+        template: config.yaml
+      - equal:
+          path: spec.match[0].excludedNamespaces
+          value: ["kube-system", "gatekeeper-system"]
+        template: config.yaml
+      - equal:
+          path: spec.match[0].processes
+          value: ["*"]
+        template: config.yaml
+      - equal:
+          path: spec.sync.syncOnly
+          value: []
+        template: config.yaml
+

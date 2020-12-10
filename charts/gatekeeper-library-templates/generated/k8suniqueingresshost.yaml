@@ -27,17 +27,3 @@ spec:
           not identical(other, input.review)
           msg := sprintf("ingress host conflicts with an existing ingress <%v>", [host])
         }
----
-apiVersion: config.gatekeeper.sh/v1alpha1
-kind: Config
-metadata:
-  name: k8suniqueingresshost
-spec:
-  sync:
-    syncOnly:
-      - group: "extensions"
-        version: "v1beta1"
-        kind: "Ingress"
-      - group: "networking.k8s.io"
-        version: "v1beta1"
-        kind: "Ingress"

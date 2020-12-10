@@ -1,0 +1,23 @@
+{{- $kinds := list }}
+{{- range .Values.constraints  }}
+{{ $kinds = append $kinds .kind }}
+{{- end }}
+
+{{- $configValues := $.Files.Get "generated/config-values.yaml" | toString | fromYaml }}
+{{- $syncOnly := list }}
+{{- range $kinds | uniq }}
+{{- if (get $configValues (lower .)) }}
+{{- $syncOnly = concat $syncOnly (get $configValues (lower .)).sync.syncOnly }}
+{{- end }}
+{{- end }}
+
+apiVersion: config.gatekeeper.sh/v1alpha1
+kind: Config
+metadata:
+  name: config
+spec:
+  match:
+    {{- toYaml .Values.exclude | nindent 4 }}
+  sync:
+    syncOnly:
+      {{- toYaml $syncOnly | nindent 6 }}
