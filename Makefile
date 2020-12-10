@@ -18,10 +18,10 @@ generate: update-submodule
 
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
 	CONTRAINTS_GENERATED=./charts/gatekeeper-library-constraints/generated
-	rm -r $$TEMPLATES_GENERATED $$CONSTRAINTS_GENERATED
+	rm -r $$TEMPLATES_GENERATED
 	mkdir -p $$TEMPLATES_GENERATED $$CONTRAINTS_GENERATED
 	DEFAULTS=$$CONTRAINTS_GENERATED/defaults.yaml
-	touch $$DEFAULTS
+	> $$DEFAULTS
 
 	LIBRARY=$$(ls -d ./library/*/)
 	for D in $$LIBRARY
