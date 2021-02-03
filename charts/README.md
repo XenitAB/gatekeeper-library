@@ -4,12 +4,13 @@ Helm chart to install Gatekeeper Library on Kubernetes.
 ## Installation
 Add the Helm repository.
 ```shell
-helm repo add https://xenitab.github.io/gatekeeper-library/
+helm repo add gatekeeper-library https://xenitab.github.io/gatekeeper-library/
 ```
 
 Install the Gatekeeper Library with the Helm chart.
 ```shell
-helm install gatekeeper-library
+helm install gatekeeper-library/gatekeeper-library-templates --generate-name
+helm install gatekeeper-library/gatekeeper-library-constraints --generate-name
 ```
 
 The chart will not create a single resource if you install it as is, because it does not contain
