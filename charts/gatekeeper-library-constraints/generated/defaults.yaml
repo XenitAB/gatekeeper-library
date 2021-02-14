@@ -50,6 +50,11 @@ k8scontainerratios:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8sdisallowedtags:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8sexternalips:
   match:
     kinds:
