@@ -7,7 +7,7 @@ violation[{"msg": msg}] {
 	volume.csi.driver = "secrets-store.csi.k8s.io"
 
 	# converts list into set, which requires unique values
-	uniqueNames := {x | x = volume.name}
-	count(volumes) != count(uniqueNames)
-	msg := sprintf(`'%v' has to specify a serviceAccountName`, [input.review.kind.kind])
+	uniqueNames := {x | x = volume.csi.volumeAttributes.secretProviderClass}
+	count(uniqueNames) != count(volumes)
+	msg := sprintf(`'%v' cant have duplicate 'secretProviderClass'`, [input.review.kind.kind])
 }
