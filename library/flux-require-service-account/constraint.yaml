@@ -9,3 +9,5 @@ spec:
         kinds: ["HelmRelease"]
       - apiGroups: ["kustomize.toolkit.fluxcd.io"]
         kinds: ["Kustomization"]
+    excludedNamespaces:
+      - "flux-system"

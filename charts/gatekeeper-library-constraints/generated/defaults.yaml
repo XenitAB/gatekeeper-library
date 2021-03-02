@@ -10,6 +10,8 @@ fluxdisablecrossnamespacesource:
         kinds: ["HelmRelease"]
       - apiGroups: ["kustomize.toolkit.fluxcd.io"]
         kinds: ["Kustomization"]
+    excludedNamespaces:
+      - "flux-system"
 fluxrequireserviceaccount:
   match:
     kinds:
@@ -17,6 +19,8 @@ fluxrequireserviceaccount:
         kinds: ["HelmRelease"]
       - apiGroups: ["kustomize.toolkit.fluxcd.io"]
         kinds: ["Kustomization"]
+    excludedNamespaces:
+      - "flux-system"
 k8spodpriorityclass:
   match:
     kinds:
