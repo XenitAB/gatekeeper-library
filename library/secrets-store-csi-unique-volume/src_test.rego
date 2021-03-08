@@ -66,6 +66,37 @@ test_input_pod_valid_csi_volume {
 	count(results) == 0
 }
 
+test_input_pod_valid_csi_multiple_volume {
+	obj = {
+		"kind": {"kind": "Pod"},
+		"object": {
+			"metadata": {"name": "some-name"},
+			"spec": {"volumes": [
+				{
+					"name": "foo",
+					"csi": {
+						"driver": "secrets-store.csi.k8s.io",
+						"readOnly": true,
+						"volumeAttributes": {"secretProviderClass": "baz"},
+					},
+				},
+				{
+					"name": "bar",
+					"emptyDir": {},
+				},
+				{
+					"name": "baz",
+					"emptyDir": {},
+				},
+			]},
+		},
+	}
+
+	input := {"review": obj, "parameters": {}}
+	results := violation with input as input
+	count(results) == 0
+}
+
 test_input_pod_invalid_csi_volume {
 	obj = {
 		"kind": {"kind": "Pod"},
