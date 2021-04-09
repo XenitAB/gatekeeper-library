@@ -23,7 +23,7 @@ generate: update-submodule
 	DEFAULTS=$$CONTRAINTS_GENERATED/defaults.yaml
 	> $$DEFAULTS
 
-	LIBRARY=$$(ls -d ./library/*/)
+	LIBRARY=$$(ls -d ./library/constraints/*/)
 	for D in $$LIBRARY
 	do
 		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
