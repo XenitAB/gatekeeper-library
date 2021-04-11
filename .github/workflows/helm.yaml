@@ -13,7 +13,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: "v3.4.1"
+          version: "v3.5.3"
       - name: Run lint
         run: make helm-lint
   test:
@@ -24,6 +24,6 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: "v3.4.1"
+          version: "v3.5.3"
       - name: Run Helm test
         run: make helm-test
