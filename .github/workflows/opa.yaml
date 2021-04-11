@@ -29,6 +29,8 @@ jobs:
         shell: bash
         run: |
           echo "Generating files"
+          git config --global core.autocrlf false
+          git config --global core.eol lf
           make generate
           git status
           git diff
