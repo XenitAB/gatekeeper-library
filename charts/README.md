@@ -31,6 +31,9 @@ The following table lists the configurable parameters of the gatekeeper-library 
 | constraints[].kind | string | `""` | Kind of the constraint |
 | constraints[].name | string | `""` | Name of the constraint, should be unique in the list |
 | constraints[].parameters | list | `[]` | Additional parameters to pass to the constraint |
+| mutationExcludedNamespaces | list | `["kube-system", "gatekeeper-system"]` | Namespaces to exclude from all mutations |
+| assigns | list | `[]` | The assigns that should be created |
+| assigns[].name | string | `""` | Name of the assign, should be unique in the list |
 
 ## Testing
 The chart is tested using the [helm-unittest](https://github.com/quintush/helm-unittest) plugin. The plugin allows
