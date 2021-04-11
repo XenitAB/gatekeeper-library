@@ -22,5 +22,17 @@ spec:
             message:
               type: string
   targets:
-  - rego: "package k8srequiredannotations\n\nget_message(parameters, _default) = msg {\n\tnot parameters.message\n\tmsg := _default\n}\n\nget_message(parameters, _default) = msg {\n\tmsg := parameters.message\n}\n\nviolation[{\"msg\": msg, \"details\": {\"missing_annotations\": missing}}] {\n\tprovided := {annotation | input.review.object.metadata.annotations[annotation]}\n\trequired := {annotation | annotation := input.parameters.annotations[_].key}\n\tmissing := required - provided\n\tcount(missing) > 0\n\tdef_msg := sprintf(\"you must provide annotations: %v\", [missing])\n\tmsg := get_message(input.parameters, def_msg)\n}\n\nviolation[{\"msg\": msg}] {\n\tvalue := input.review.object.metadata.annotations[key]\n\texpected := input.parameters.annotations[_]\n\texpected.key == key\n\texpected.allowedRegex != \"\"\n\tnot re_match(expected.allowedRegex, value)\n\tdef_msg := sprintf(\"Annotation <%v: %v> does not satisfy allowed regex: %v\", [key, value, expected.allowedRegex])\n\tmsg := get_message(input.parameters, def_msg)\n}"
+  - rego: "package k8srequiredannotations\n\nget_message(parameters, _default) = msg
+      {\n\tnot parameters.message\n\tmsg := _default\n}\n\nget_message(parameters,
+      _default) = msg {\n\tmsg := parameters.message\n}\n\nviolation[{\"msg\": msg,
+      \"details\": {\"missing_annotations\": missing}}] {\n\tprovided := {annotation
+      | input.review.object.metadata.annotations[annotation]}\n\trequired := {annotation
+      | annotation := input.parameters.annotations[_].key}\n\tmissing := required
+      - provided\n\tcount(missing) > 0\n\tdef_msg := sprintf(\"you must provide annotations:
+      %v\", [missing])\n\tmsg := get_message(input.parameters, def_msg)\n}\n\nviolation[{\"msg\":
+      msg}] {\n\tvalue := input.review.object.metadata.annotations[key]\n\texpected
+      := input.parameters.annotations[_]\n\texpected.key == key\n\texpected.allowedRegex
+      != \"\"\n\tnot re_match(expected.allowedRegex, value)\n\tdef_msg := sprintf(\"Annotation
+      <%v: %v> does not satisfy allowed regex: %v\", [key, value, expected.allowedRegex])\n\tmsg
+      := get_message(input.parameters, def_msg)\n}"
     target: admission.k8s.gatekeeper.sh

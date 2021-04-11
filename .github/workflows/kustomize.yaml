@@ -10,12 +10,14 @@ jobs:
     steps:
       - name: Install kustomize
         run: |
-          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.1/kustomize_v4.0.1_linux_amd64.tar.gz
-          tar xzf kustomize_v4.0.1_linux_amd64.tar.gz
-          rm kustomize_v4.0.1_linux_amd64.tar.gz
-          sudo mv kustomize /bin/kustomize
+          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.5/kustomize_v4.0.5_linux_amd64.tar.gz
+          tar xzf kustomize_v4.0.5_linux_amd64.tar.gz
+          rm kustomize_v4.0.5_linux_amd64.tar.gz
+          mkdir -p ~/.local/bin/
+          mv ./kustomize ~/.local/bin/kustomize
       - name: Checkout
         uses: actions/checkout@master
       - name: Run Kustomize build
         run: |
+          export PATH=${PATH}:~/.local/bin
           kustomize build ./deploy

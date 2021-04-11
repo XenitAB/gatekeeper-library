@@ -36,7 +36,6 @@ generate: update-submodule
 		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
 		SRC=$$(cat $$D/src.rego)
 		yq w -i $$D/template.yaml "spec.targets[0].rego" "$$SRC"
-		kustomize build $$D
 		kustomize build $$D > $$TEMPLATES_GENERATED/$$NAME.yaml
 		echo "$$NAME:" >> $$CONSTRAINT_DEFAULTS
 		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$CONSTRAINT_DEFAULTS
