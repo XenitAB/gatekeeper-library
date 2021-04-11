@@ -28,6 +28,7 @@ jobs:
           echo "Generating files"
           make generate
           git status
+          git diff
           if [ -z "$(git status --porcelain)" ]; then
             echo "Everything looks good"
             exit 0
