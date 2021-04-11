@@ -1,4 +1,4 @@
-SHELL:=/bin/bash
+SHELL=/bin/sh
 
 all: opa-fmt opa-test generate helm-lint helm-test
 
