@@ -20,18 +20,25 @@ generate: update-submodule
 	CONTRAINTS_GENERATED=./charts/gatekeeper-library-constraints/generated
 	rm -r $$TEMPLATES_GENERATED
 	mkdir -p $$TEMPLATES_GENERATED $$CONTRAINTS_GENERATED
-	DEFAULTS=$$CONTRAINTS_GENERATED/defaults.yaml
-	> $$DEFAULTS
+	CONSTRAINT_DEFAULTS=$$CONTRAINTS_GENERATED/constraint-defaults.yaml
+	> $$CONSTRAINT_DEFAULTS
 
-	LIBRARY=$$(ls -d ./library/constraints/*/)
-	for D in $$LIBRARY
+	ASSIGN_LIBRARY=$$(ls -d ./library/assigns/*)
+	for D in $$ASSIGN_LIBRARY
+	do
+		FILENAME=$$(basename $$D)
+		cp $$D $$CONTRAINTS_GENERATED/$$FILENAME
+	done
+
+	CONSTRAINT_LIBRARY=$$(ls -d ./library/constraints/*/)
+	for D in $$CONSTRAINT_LIBRARY
 	do
 		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
 		SRC=$$(cat $$D/src.rego)
 		yq w -i $$D/template.yaml "spec.targets[0].rego" "$$SRC"
 		kustomize build $$D > $$TEMPLATES_GENERATED/$$NAME.yaml
-		echo "$$NAME:" >> $$DEFAULTS
-		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$DEFAULTS
+		echo "$$NAME:" >> $$CONSTRAINT_DEFAULTS
+		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$CONSTRAINT_DEFAULTS
 	done
 
 	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
@@ -40,7 +47,7 @@ generate: update-submodule
 		NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
 		cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 		SAMPLE=$$(ls $$D/samples/ | head -n 1)
-		yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$DEFAULTS
+		yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$CONSTRAINT_DEFAULTS
 		touch $$TEMPLATES_GENERATED/config-values.yaml
 		if test -f $$D/sync.yaml; then
 			yq r "$$D/sync.yaml" spec | yq p - $${NAME} >> $$TEMPLATES_GENERATED/config-values.yaml

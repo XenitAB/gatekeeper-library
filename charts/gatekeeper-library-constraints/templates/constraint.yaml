@@ -1,7 +1,7 @@
-{{- $defaultValues := $.Files.Get "generated/defaults.yaml" | toString | fromYaml }}
+{{- $defaultValues := $.Files.Get "generated/constraint-defaults.yaml" | toString | fromYaml }}
 {{- $prefix := .Values.namePrefix }}
 
-{{- range .Values.constraints }}
+{{- range .Values.mutations }}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: {{ required "Constraint kind needs to be set" .kind }}
 metadata:

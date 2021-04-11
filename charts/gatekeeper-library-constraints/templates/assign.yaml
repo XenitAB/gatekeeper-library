@@ -1,0 +1,17 @@
+{{- $prefix := .Values.namePrefix }}
+{{- $excludedNamespaces := .Values.mutationExcludedNamespaces }}
+
+{{- range .Values.assigns }}
+{{- $assignData := $.Files.Get (printf "generated/%s.yaml" .name) | toString | fromYaml }}
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: {{ $prefix }}{{ required "Assign name needs to be set" .name }}
+spec:
+  match: {{- $assignData.spec.match | toYaml | nindent 4 }}
+    excludedNamespaces: {{ $excludedNamespaces }}
+  applyTo: {{- $assignData.spec.applyTo | toYaml | nindent 4 }}
+  location: {{ quote $assignData.spec.location }}
+  parameters: {{- $assignData.spec.parameters | toYaml | nindent 4 }}
+---
+{{- end }}

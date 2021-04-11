@@ -13,6 +13,11 @@ helm install gatekeeper-library/gatekeeper-library-templates --generate-name
 helm install gatekeeper-library/gatekeeper-library-constraints --generate-name
 ```
 
+The Helm chart is split into two as the first chart needs to install the templates then wait for
+the controller to create the CRDs, before the second chart can be installed. The constraints chart
+will also contain mutations as these were introduced at a later date and it would be difficult to
+rename the chart now.
+
 The chart will not create a single resource if you install it as is, because it does not contain
 any default values. Have a look at the [values.yaml](./values.yaml) for a template to start from.
 
