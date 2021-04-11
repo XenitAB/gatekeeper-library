@@ -4,7 +4,7 @@ templates:
 tests:
   - it: should work
     set:
-      mutationExcludedNamespaces: ["foobar"]
+      mutationExcludedNamespaces: ["foo", "bar"]
       assigns:
         - name: container-read-only-root-fs
     asserts:
@@ -14,5 +14,5 @@ tests:
         template: assign.yaml
       - equal:
           path: spec.match.excludedNamespaces
-          value: ["foobar"]
+          value: ["foo", "bar"]
         template: assign.yaml
