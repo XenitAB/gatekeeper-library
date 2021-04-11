@@ -29,6 +29,7 @@ jobs:
         shell: bash
         run: |
           echo "Generating files"
+          kustomize version
           make generate
           git status
           git diff
