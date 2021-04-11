@@ -9,11 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install yq
+        shell: bash
         run: |
           wget -q https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
           chmod +x yq_linux_amd64
           sudo mv yq_linux_amd64 /bin/yq
       - name: Install kustomize
+        shell: bash
         run: |
           wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.1/kustomize_v4.0.1_linux_amd64.tar.gz
           tar xzf kustomize_v4.0.1_linux_amd64.tar.gz
@@ -24,6 +26,7 @@ jobs:
         with:
           submodules: true
       - name: Run check
+        shell: bash
         run: |
           echo "Generating files"
           make generate
