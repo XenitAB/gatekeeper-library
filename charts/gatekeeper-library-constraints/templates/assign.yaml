@@ -9,7 +9,7 @@ metadata:
   name: {{ $prefix }}{{ required "Assign name needs to be set" .name }}
 spec:
   match: {{- $assignData.spec.match | toYaml | nindent 4 }}
-    excludedNamespaces: {{ $excludedNamespaces }}
+    excludedNamespaces: {{- $excludedNamespaces | toYaml | nindent 6 }}
   applyTo: {{- $assignData.spec.applyTo | toYaml | nindent 4 }}
   location: {{ quote $assignData.spec.location }}
   parameters: {{- $assignData.spec.parameters | toYaml | nindent 4 }}
