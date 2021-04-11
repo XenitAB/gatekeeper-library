@@ -3,3 +3,7 @@ constraints:
     name: https-only
   - kind: K8sPodPriorityClass
     name: pod-priority-class
+
+assigns:
+  - name: container-read-only-root-fs
+  - name: container-drop-net-raw

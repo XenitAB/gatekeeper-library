@@ -1,4 +1,4 @@
-{{- $defaultValues := $.Files.Get "generated/defaults.yaml" | toString | fromYaml }}
+{{- $defaultValues := $.Files.Get "generated/constraint-defaults.yaml" | toString | fromYaml }}
 {{- $prefix := .Values.namePrefix }}
 
 {{- range .Values.constraints }}

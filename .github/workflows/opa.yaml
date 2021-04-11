@@ -9,23 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install yq
+        shell: bash
         run: |
           wget -q https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
           chmod +x yq_linux_amd64
-          sudo mv yq_linux_amd64 /bin/yq
+          mkdir -p ~/.local/bin/
+          mv ./yq_linux_amd64 ~/.local/bin/yq
       - name: Install kustomize
+        shell: bash
         run: |
-          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv3.8.6/kustomize_v3.8.6_linux_amd64.tar.gz
-          tar xzf kustomize_v3.8.6_linux_amd64.tar.gz
-          rm kustomize_v3.8.6_linux_amd64.tar.gz
-          sudo mv kustomize /bin/kustomize
+          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.5/kustomize_v4.0.5_linux_amd64.tar.gz
+          tar xzf kustomize_v4.0.5_linux_amd64.tar.gz
+          rm kustomize_v4.0.5_linux_amd64.tar.gz
+          mkdir -p ~/.local/bin/
+          mv ./kustomize ~/.local/bin/kustomize
       - name: Checkout
         uses: actions/checkout@master
         with:
           submodules: true
       - name: Run check
+        shell: bash
         run: |
-          echo "Generating files"
+          export PATH=${PATH}:~/.local/bin
           make generate
           if [ -z "$(git status --porcelain)" ]; then
             echo "Everything looks good"
