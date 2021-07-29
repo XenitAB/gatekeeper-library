@@ -7,9 +7,6 @@ spec:
     spec:
       names:
         kind: AzureIdentityFormat
-        listKind: AzureIdentityFormatList
-        plural: AzureIdentityFormat
-        singular: AzureIdentityFormat
   targets:
   - rego: "package azureidentityformat\n\nviolation[{\"msg\": msg}] {\n\tinput.review.kind.kind
       == \"AzureIdentity\"\n\n\t# format of resourceId is checked only for user-assigned

@@ -7,9 +7,6 @@ spec:
     spec:
       names:
         kind: AzureIdentityFormat
-        listKind: AzureIdentityFormatList
-        plural: AzureIdentityFormat
-        singular: AzureIdentityFormat
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |-
