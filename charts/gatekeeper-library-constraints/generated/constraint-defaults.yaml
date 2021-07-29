@@ -79,6 +79,16 @@ k8simagedigests:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8sreplicalimits:
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment"]
+k8srequiredannotations:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
 k8srequiredlabels:
   match:
     kinds:
