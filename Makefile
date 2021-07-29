@@ -44,13 +44,15 @@ generate: update-submodule
 	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
 	for D in $$EXTERNAL_LIBRARY
 	do
-		NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
-		cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
-		SAMPLE=$$(ls $$D/samples/ | head -n 1)
-		yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$CONSTRAINT_DEFAULTS
-		touch $$TEMPLATES_GENERATED/config-values.yaml
-		if test -f $$D/sync.yaml; then
-			yq r "$$D/sync.yaml" spec | yq p - $${NAME} >> $$TEMPLATES_GENERATED/config-values.yaml
+	    if [[ -f $$D/template.yaml ]]; then
+			NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
+			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
+			SAMPLE=$$(ls $$D/samples/ | head -n 1)
+			yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$CONSTRAINT_DEFAULTS
+			touch $$TEMPLATES_GENERATED/config-values.yaml
+			if test -f $$D/sync.yaml; then
+				yq r "$$D/sync.yaml" spec | yq p - $${NAME} >> $$TEMPLATES_GENERATED/config-values.yaml
+			fi
 		fi
 	done
 
