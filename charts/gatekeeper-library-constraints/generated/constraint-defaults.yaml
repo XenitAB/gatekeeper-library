@@ -44,6 +44,16 @@ k8sallowedrepos:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8spspautomountserviceaccounttokenpod:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8sblockendpointeditdefaultrole:
+  match:
+    kinds:
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        kinds: ["ClusterRole"]
 k8sblocknodeport:
   match:
     kinds:
@@ -59,6 +69,13 @@ k8scontainerratios:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8sdisallowanonymous:
+  match:
+    kinds:
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        kinds: ["ClusterRoleBinding"]
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        kinds: ["RoleBinding"]
 k8sdisallowedtags:
   match:
     kinds:
