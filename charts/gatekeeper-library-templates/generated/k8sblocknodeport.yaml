@@ -3,10 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: k8sblocknodeport
   annotations:
-    description: >-
-      Disallows all Services with type NodePort.
-
-      https://kubernetes.io/docs/concepts/services-networking/service/#nodeport
+    description: Disallows all Services with type NodePort.
 spec:
   crd:
     spec:

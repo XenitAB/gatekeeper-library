@@ -3,9 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: k8sreplicalimits
   annotations:
-    description: >-
-      Requires that objects with the field `spec.replicas` (Deployments,
-      ReplicaSets, etc.) specify a number of replicas within defined ranges.
+    description: Requires a number of replicas to be set for a deployment between a min and max value.
 spec:
   crd:
     spec:
@@ -18,16 +16,12 @@ spec:
           properties:
             ranges:
               type: array
-              description: Allowed ranges for numbers of replicas.  Values are inclusive.
               items:
                 type: object
-                description: A range of allowed replicas.  Values are inclusive.
                 properties:
                   min_replicas:
-                    description: The minimum number of replicas allowed, inclusive.
                     type: integer
                   max_replicas:
-                    description: The maximum number of replicas allowed, inclusive.
                     type: integer
   targets:
     - target: admission.k8s.gatekeeper.sh

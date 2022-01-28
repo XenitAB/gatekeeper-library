@@ -3,13 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: k8suniqueserviceselector
   annotations:
-    description: >-
-      Requires Services to have unique selectors within a namespace.
-      Selectors are considered the same if they have identical keys and values.
-      Selectors may share a key/value pair so long as there is at least one
-      distinct key/value pair between them.
-      
-      https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+    description: Requires Services to have unique selectors within a namespace.
 spec:
   crd:
     spec:
@@ -49,7 +43,7 @@ spec:
           input.review.kind.version == "v1"
           input.review.kind.group == ""
           input_selector := flatten_selector(input.review.object)
-          other := data.inventory.namespace[namespace][_]["Service"][name]
+          other := data.inventory.namespace[namespace][_][_][name]
           not identical(other, input.review)
           other_selector := flatten_selector(other)
           input_selector == other_selector

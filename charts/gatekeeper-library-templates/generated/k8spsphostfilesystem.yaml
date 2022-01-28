@@ -3,11 +3,7 @@ kind: ConstraintTemplate
 metadata:
   name: k8spsphostfilesystem
   annotations:
-    description: >-
-      Controls usage of the host filesystem. Corresponds to the
-      `allowedHostPaths` field in a PodSecurityPolicy. For more information,
-      see
-      https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
+    description: Controls usage of the host filesystem.
 spec:
   crd:
     spec:
@@ -17,24 +13,16 @@ spec:
         # Schema for the `parameters` field
         openAPIV3Schema:
           type: object
-          description: >-
-            Controls usage of the host filesystem. Corresponds to the
-            `allowedHostPaths` field in a PodSecurityPolicy. For more information,
-            see
-            https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
           properties:
             allowedHostPaths:
               type: array
-              description: "An array of hostpath objects, representing paths and read/write configuration."
               items:
                 type: object
                 properties:
-                  pathPrefix:
-                    type: string
-                    description: "The path prefix that the host volume must match."
                   readOnly:
                     type: boolean
-                    description: "when set to true, any container volumeMounts matching the pathPrefix must include `readOnly: true`."
+                  pathPrefix:
+                    type: string
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
@@ -90,18 +78,10 @@ spec:
         # This allows "/foo", "/foo/", "/foo/bar" etc., but
         # disallows "/fool", "/etc/foo" etc.
         path_matches(prefix, path) {
-            a := path_array(prefix)
-            b := path_array(path)
+            a := split(trim(prefix, "/"), "/")
+            b := split(trim(path, "/"), "/")
             prefix_matches(a, b)
         }
-        path_array(p) = out {
-            p != "/"
-            out := split(trim(p, "/"), "/")
-        }
-        # This handles the special case for "/", since
-        # split(trim("/", "/"), "/") == [""]
-        path_array("/") = []
-
         prefix_matches(a, b) {
             count(a) <= count(b)
             not any_not_equal_upto(a, b, count(a))
