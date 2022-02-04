@@ -33,25 +33,25 @@ generate: update-submodule
 	CONSTRAINT_LIBRARY=$$(ls -d ./library/constraints/*/)
 	for D in $$CONSTRAINT_LIBRARY
 	do
-		NAME=$$(yq r $$D/constraint.yaml "kind" | tr "[:upper:]" "[:lower:]")
+		NAME=$$(yq '.kind' $$D/constraint.yaml | tr "[:upper:]" "[:lower:]")
 		SRC=$$(cat $$D/src.rego)
-		yq w -i $$D/template.yaml "spec.targets[0].rego" "$$SRC"
+		SRC=$$SRC yq -i '.spec.targets[0].rego = strenv(SRC)' $$D/template.yaml
 		kustomize build $$D > $$TEMPLATES_GENERATED/$$NAME.yaml
 		echo "$$NAME:" >> $$CONSTRAINT_DEFAULTS
-		yq r $$D/constraint.yaml "spec" | sed 's/^/  /' >> $$CONSTRAINT_DEFAULTS
+		yq '.spec' $$D/constraint.yaml | sed 's/^/  /' >> $$CONSTRAINT_DEFAULTS
 	done
 
 	EXTERNAL_LIBRARY=$$(ls -d ./external/library/*/*/)
 	for D in $$EXTERNAL_LIBRARY
 	do
 	    if [[ -f $$D/template.yaml ]]; then
-			NAME=$$(yq r $$D/template.yaml metadata.name | tr "[:upper:]" "[:lower:]")
+			NAME=$$(yq '.metadata.name' $$D/template.yaml | tr "[:upper:]" "[:lower:]")
 			cat $$D/template.yaml > $$TEMPLATES_GENERATED/$$NAME.yaml
 			SAMPLE=$$(ls $$D/samples/ | head -n 1)
-			yq r "$${D}samples/$$SAMPLE/constraint.yaml" spec.match.kinds | yq p - $${NAME}.match.kinds >> $$CONSTRAINT_DEFAULTS
+			yq '.spec.match.kinds // {}' "$${D}samples/$$SAMPLE/constraint.yaml" | yq "{\"$$NAME\": {\"match\": {\"kinds\": . }}}" >> $$CONSTRAINT_DEFAULTS
 			touch $$TEMPLATES_GENERATED/config-values.yaml
 			if test -f $$D/sync.yaml; then
-				yq r "$$D/sync.yaml" spec | yq p - $${NAME} >> $$TEMPLATES_GENERATED/config-values.yaml
+				yq '.spec' "$$D/sync.yaml" | yq "{\"$$NAME\": . }" >> $$TEMPLATES_GENERATED/config-values.yaml
 			fi
 		fi
 	done
