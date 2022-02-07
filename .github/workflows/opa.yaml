@@ -37,12 +37,14 @@ jobs:
             exit 0
           else
             echo "All changes have not been generated"
+            git status
+            git --no-pager diff
             exit 1
           fi
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Run OPA tests
-      uses: b4b4r07/action-opa@master
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run OPA tests
+        uses: b4b4r07/action-opa@master
