@@ -69,6 +69,11 @@ k8scontainerlimits:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8scontainerrequests:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8scontainerratios:
   match:
     kinds:
@@ -101,6 +106,34 @@ k8simagedigests:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+noupdateserviceaccount:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds:
+          # You can optionally add "Pod" here, but it is unnecessary because
+          # Pod service account immutability is enforced by the Kubernetes API.
+          - "ReplicationController"
+      - apiGroups: ["apps"]
+        kinds:
+          - "ReplicaSet"
+          - "Deployment"
+          - "StatefulSet"
+          - "DaemonSet"
+      - apiGroups: ["batch"]
+        kinds:
+          # You can optionally add "Job" here, but it is unnecessary because
+          # Job service account immutability is enforced by the Kubernetes API.
+          - "CronJob"
+k8spoddisruptionbudget:
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment", "ReplicaSet", "StatefulSet"]
+      - apiGroups: ["policy"]
+        kinds: ["PodDisruptionBudget"]
+      - apiGroups: [""]
+        kinds: ["ReplicationController"]
 k8sreplicalimits:
   match:
     kinds:

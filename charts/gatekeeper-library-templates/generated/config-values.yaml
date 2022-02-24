@@ -7,6 +7,12 @@ k8shttpsonly:
       - group: "networking.k8s.io"
         version: "v1beta1"
         kind: "Ingress"
+k8spoddisruptionbudget:
+  sync:
+    syncOnly:
+      - group: "policy"
+        version: "v1"
+        kind: "PodDisruptionBudget"
 k8suniqueingresshost:
   sync:
     syncOnly:
