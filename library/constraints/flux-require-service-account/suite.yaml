@@ -1,0 +1,17 @@
+apiVersion: test.gatekeeper.sh/v1alpha1
+kind: Suite
+metadata:
+  name: flux-require-service-account
+tests:
+  - name: flux-require-service-account
+    template: template.yaml
+    constraint: constraint.yaml
+    cases:
+      - name: with-service-account
+        object: samples/with-service-account.yaml
+        assertions:
+          - violations: no
+      - name: without-service-account
+        object: samples/without-service-account.yaml
+        assertions:
+          - violations: yes
