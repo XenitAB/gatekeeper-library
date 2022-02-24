@@ -13,6 +13,7 @@ spec:
             permittedClassNames:
               items: string
               type: array
+          type: object
   targets:
   - rego: "package k8spodpriorityclass\n\nviolation[{\"msg\": msg}] {\n\tinput.review.kind.kind
       == \"Pod\"\n\tpermittedClassNames := get_class_names(input.parameters, [\"\"])\n\tnot
