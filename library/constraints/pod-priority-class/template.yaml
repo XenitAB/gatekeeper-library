@@ -9,6 +9,7 @@ spec:
         kind: K8sPodPriorityClass
       validation:
         openAPIV3Schema:
+          type: object
           properties:
             permittedClassNames:
               type: array
