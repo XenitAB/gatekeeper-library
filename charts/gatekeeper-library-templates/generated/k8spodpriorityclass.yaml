@@ -11,7 +11,8 @@ spec:
         openAPIV3Schema:
           properties:
             permittedClassNames:
-              items: string
+              items:
+                type: string
               type: array
           type: object
   targets:

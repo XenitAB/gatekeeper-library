@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-kubectl create namespace gatekeeper-system
+kubectl create namespace gatekeeper-system --dry-run=client -o yaml | kubectl apply -f -
 helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
 helm repo update
 helm upgrade --version "v3.7.1" --install --namespace gatekeeper-system gatekeeper gatekeeper/gatekeeper
