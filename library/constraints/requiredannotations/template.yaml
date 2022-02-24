@@ -1,4 +1,4 @@
-apiVersion: templates.gatekeeper.sh/v1beta1
+apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
   name: k8srequiredannotations
@@ -9,6 +9,7 @@ spec:
         kind: K8sRequiredAnnotations
       validation:
         openAPIV3Schema:
+          type: object
           properties:
             message:
               type: string

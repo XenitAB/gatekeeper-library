@@ -1,4 +1,4 @@
-apiVersion: templates.gatekeeper.sh/v1beta1
+apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
   name: k8spodpriorityclass
@@ -9,10 +9,12 @@ spec:
         kind: K8sPodPriorityClass
       validation:
         openAPIV3Schema:
+          type: object
           properties:
             permittedClassNames:
               type: array
-              items: string
+              items:
+                type: string
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |-

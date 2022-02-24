@@ -1,4 +1,4 @@
-apiVersion: templates.gatekeeper.sh/v1beta1
+apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
   name: k8spodpriorityclass
@@ -11,8 +11,10 @@ spec:
         openAPIV3Schema:
           properties:
             permittedClassNames:
-              items: string
+              items:
+                type: string
               type: array
+          type: object
   targets:
   - rego: "package k8spodpriorityclass\n\nviolation[{\"msg\": msg}] {\n\tinput.review.kind.kind
       == \"Pod\"\n\tpermittedClassNames := get_class_names(input.parameters, [\"\"])\n\tnot
