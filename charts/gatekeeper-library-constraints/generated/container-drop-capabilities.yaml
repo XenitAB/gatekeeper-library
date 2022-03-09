@@ -1,7 +1,7 @@
 apiVersion: mutations.gatekeeper.sh/v1beta1
 kind: Assign
 metadata:
-  name: container-drop-net-raw
+  name: container-drop-capabilities
 spec:
   match:
     scope: Namespaced
