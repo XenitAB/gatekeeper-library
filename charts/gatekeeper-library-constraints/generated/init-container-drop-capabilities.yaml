@@ -17,3 +17,4 @@ spec:
     assign:
       value:
         - NET_RAW
+        - CAP_SYS_ADMIN
