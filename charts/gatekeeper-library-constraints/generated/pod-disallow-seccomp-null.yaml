@@ -1,0 +1,21 @@
+apiVersion: mutations.gatekeeper.sh/v1beta1
+kind: Assign
+metadata:
+  name: pod-disallow-seccomp-null
+spec:
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["*"]
+        kinds: ["Pod"]
+  applyTo:
+    - versions: ["v1"]
+      groups: [""]
+      kinds: ["Pod"]
+  location: "spec.securityContext.seccompProfile.type"
+  parameters:
+    assign:
+      value: RuntimeDefault
+    pathTests:
+      - subPath: "spec.securityContext.seccompProfile"
+        condition: MustNotExist
