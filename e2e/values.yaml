@@ -6,4 +6,4 @@ constraints:
 
 assigns:
   - name: container-read-only-root-fs
-  - name: container-drop-net-raw
+  - name: container-drop-capabilities
