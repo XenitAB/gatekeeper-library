@@ -34,6 +34,11 @@ k8srequiredannotations:
   parameters:
     message: "Resource does not contain the required annotation"
     annotations: []
+k8srequireingressclass:
+  match:
+    kinds:
+      - apiGroups: ["networking.k8s.io"]
+        kinds: ["Ingress"]
 secretsstorecsiuniquevolume:
   match:
     kinds:
