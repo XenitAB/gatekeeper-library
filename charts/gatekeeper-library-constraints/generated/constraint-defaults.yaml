@@ -26,6 +26,11 @@ k8spodpriorityclass:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8srequireingressclass:
+  match:
+    kinds:
+      - apiGroups: ["networking.k8s.io"]
+        kinds: ["Ingress"]
 k8srequiredannotations:
   match:
     kinds:
