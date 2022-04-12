@@ -1,7 +1,7 @@
 apiVersion: mutations.gatekeeper.sh/v1beta1
 kind: Assign
 metadata:
-  name: init-container-capabilities
+  name: init-container-drop-capabilities
 spec:
   match:
     scope: Namespaced
