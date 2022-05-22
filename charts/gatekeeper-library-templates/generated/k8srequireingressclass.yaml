@@ -1,12 +1,12 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: k8spodpriorityclass
+  name: k8srequireingressclass
 spec:
   crd:
     spec:
       names:
-        kind: K8sPodPriorityClass
+        kind: K8sRequireIngressClass
       validation:
         openAPIV3Schema:
           properties:
