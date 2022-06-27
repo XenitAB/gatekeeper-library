@@ -11,16 +11,16 @@ jobs:
       - name: Install yq
         shell: bash
         run: |
-          wget -q https://github.com/mikefarah/yq/releases/download/v4.19.1/yq_linux_amd64
+          wget -q https://github.com/mikefarah/yq/releases/download/v4.25.3/yq_linux_amd64
           chmod +x yq_linux_amd64
           mkdir -p ~/.local/bin/
           mv ./yq_linux_amd64 ~/.local/bin/yq
       - name: Install kustomize
         shell: bash
         run: |
-          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.0.5/kustomize_v4.0.5_linux_amd64.tar.gz
-          tar xzf kustomize_v4.0.5_linux_amd64.tar.gz
-          rm kustomize_v4.0.5_linux_amd64.tar.gz
+          wget -q https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.5.5/kustomize_v4.5.5_linux_amd64.tar.gz
+          tar xzf kustomize_v4.5.5_linux_amd64.tar.gz
+          rm kustomize_v4.5.5_linux_amd64.tar.gz
           mkdir -p ~/.local/bin/
           mv ./kustomize ~/.local/bin/kustomize
       - name: Checkout
@@ -32,11 +32,12 @@ jobs:
         run: |
           export PATH=${PATH}:~/.local/bin
           make generate
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "Everything looks good"
-            exit 0
-          else
-            echo "All changes have not been generated"
+          if [[ $(git status --porcelain) ]]; then
+            echo -e "Changed or untracked files found. Please run 'make generate' and then commit the changed and/or untracked files.\n" 1>&2
+            echo -e "\nOutput from 'git status':\n\n" 1>&2
+            git status
+            echo -e "\nOutput from 'git diff':\n\n" 1>&2
+            git --no-pager diff
             exit 1
           fi
   test:
