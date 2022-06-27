@@ -84,6 +84,11 @@ k8scontainerratios:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8srequiredresources:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8sdisallowanonymous:
   match:
     kinds:
