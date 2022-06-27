@@ -43,7 +43,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Run OPA tests
-      uses: b4b4r07/action-opa@master
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run OPA tests
+        uses: b4b4r07/action-opa@master
