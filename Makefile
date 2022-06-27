@@ -8,12 +8,15 @@ opa-fmt:
 opa-test:
 	opa test library --ignore *.yaml
 
-update-submodule:
+update-external:
 	git submodule update --init --remote
+
+get-external:
+	git submodule update --init
 
 .ONESHELL: generate
 .SILENT: generate
-generate: update-submodule
+generate: get-external
 	set -e
 
 	TEMPLATES_GENERATED=./charts/gatekeeper-library-templates/generated
