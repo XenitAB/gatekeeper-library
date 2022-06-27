@@ -1,0 +1,33 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequireingressclass
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequireIngressClass
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            permittedClassNames:
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |-
+        package k8srequireingressclass
+
+        violation[{"msg": msg}] {
+        	input.review.kind.kind == "Ingress"
+        	not input.review.object.spec.ingressClassName
+        	msg := "Ingress class name has to be set"
+        }
+
+        violation[{"msg": msg}] {
+        	input.review.kind.kind == "Ingress"
+        	input.review.object.spec.ingressClassName == ""
+        	msg := "Ingress class name cannot be an emtpy string"
+        }
