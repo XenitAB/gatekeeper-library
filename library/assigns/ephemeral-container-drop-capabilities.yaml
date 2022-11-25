@@ -1,0 +1,20 @@
+apiVersion: mutations.gatekeeper.sh/v1beta1
+kind: Assign
+metadata:
+  name: ephemeral-container-drop-capabilities
+spec:
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["*"]
+        kinds: ["Pod"]
+  applyTo:
+    - groups: [""]
+      versions: ["v1"]
+      kinds: ["Pod"]
+  location: "spec.ephemeralContainers[name:*].securityContext.capabilities.drop"
+  parameters:
+    assign:
+      value:
+        - NET_RAW
+        - CAP_SYS_ADMIN
