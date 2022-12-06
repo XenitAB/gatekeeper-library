@@ -26,6 +26,11 @@ k8spodpriorityclass:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8spspreadonlyrootfilesystemxenit:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8srequireingressclass:
   match:
     kinds:
