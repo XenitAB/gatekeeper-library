@@ -1,7 +1,7 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: k8spspreadonlyrootfilesystem
+  name: k8spspreadonlyrootfilesystemXenit
   annotations:
     description: >-
       Requires the use of a read-only root file system by pod containers. Corresponds to the `readOnlyRootFilesystem` field in a PodSecurityPolicy. For more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
@@ -9,7 +9,7 @@ spec:
   crd:
     spec:
       names:
-        kind: K8sPSPReadOnlyRootFilesystem
+        kind: K8sPSPReadOnlyRootFilesystemXenit
       validation:
         # Schema for the `parameters` field
         openAPIV3Schema:

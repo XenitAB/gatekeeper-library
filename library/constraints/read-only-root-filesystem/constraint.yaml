@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPReadOnlyRootFilesystemXenit
 metadata:
-  name: psp-readonlyrootfilesystem
+  name: psp-readonlyrootfilesystem-xenit
 spec:
   match:
     kinds:

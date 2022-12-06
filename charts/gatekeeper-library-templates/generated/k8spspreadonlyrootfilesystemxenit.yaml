@@ -5,12 +5,12 @@ metadata:
     description: Requires the use of a read-only root file system by pod containers.
       Corresponds to the `readOnlyRootFilesystem` field in a PodSecurityPolicy. For
       more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
-  name: k8spspreadonlyrootfilesystem
+  name: k8spspreadonlyrootfilesystemXenit
 spec:
   crd:
     spec:
       names:
-        kind: K8sPSPReadOnlyRootFilesystem
+        kind: K8sPSPReadOnlyRootFilesystemXenit
       validation:
         openAPIV3Schema:
           description: Requires the use of a read-only root file system by pod containers.
