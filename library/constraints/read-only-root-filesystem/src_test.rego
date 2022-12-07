@@ -1,4 +1,4 @@
-package k8spspreadonlyrootfilesystemXenit
+package k8spspreadonlyrootfilesystemxenit
 
 test_input_container_not_readonlyrootfilesystem_allowed {
     input := { "review": input_review}

@@ -1,4 +1,4 @@
-package k8spspreadonlyrootfilesystemXenit
+package k8spspreadonlyrootfilesystemxenit
 
 import data.lib.exempt_container.is_exempt
 
