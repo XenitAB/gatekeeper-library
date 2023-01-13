@@ -16,4 +16,7 @@ tests:
             - group: networking.k8s.io
               kind: Ingress
               version: v1beta1
+            - group: networking.k8s.io
+              kind: Ingress
+              version: v1
         template: config.yaml
