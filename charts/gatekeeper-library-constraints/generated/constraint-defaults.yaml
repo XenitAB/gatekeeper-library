@@ -56,6 +56,11 @@ k8sblockendpointeditdefaultrole:
     kinds:
       - apiGroups: ["rbac.authorization.k8s.io"]
         kinds: ["ClusterRole"]
+k8sblockloadbalancer:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Service"]
 k8sblocknodeport:
   match:
     kinds:
@@ -161,6 +166,13 @@ k8srequiredprobes:
     kinds:
       - apiGroups: [""]
         kinds: ["Pod"]
+k8sstorageclass:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["PersistentVolumeClaim"]
+      - apiGroups: ["apps"]
+        kinds: ["StatefulSet"]
 k8suniqueingresshost:
   match:
     kinds:
