@@ -13,6 +13,12 @@ k8spoddisruptionbudget:
       - group: "policy"
         version: "v1"
         kind: "PodDisruptionBudget"
+k8sstorageclass:
+  sync:
+    syncOnly:
+      - group: "storage.k8s.io"
+        version: "v1"
+        kind: "StorageClass"
 k8suniqueingresshost:
   sync:
     syncOnly:
@@ -22,3 +28,12 @@ k8suniqueingresshost:
       - group: "networking.k8s.io"
         version: "v1beta1"
         kind: "Ingress"
+      - group: "networking.k8s.io"
+        version: "v1"
+        kind: "Ingress"
+k8suniqueserviceselector:
+  sync:
+    syncOnly:
+      - group: ""
+        version: "v1"
+        kind: "Service"
