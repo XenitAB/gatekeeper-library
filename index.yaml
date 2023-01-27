@@ -36,6 +36,17 @@ entries:
     version: v0.1.0
   gatekeeper-library-constraints:
   - apiVersion: v2
+    appVersion: v0.23.0
+    created: "2023-01-27T15:36:11.31131398Z"
+    description: Library of gateeper constraints
+    digest: 6d4617c24d2e17a9a86fc0e074c1bb3b7a8f2e817ceddd98a8afab5e907c03f3
+    home: https://github.com/xenitab/gatekeeper-library
+    name: gatekeeper-library-constraints
+    type: application
+    urls:
+    - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-constraints-v0.23.0.tgz
+    version: v0.23.0
+  - apiVersion: v2
     appVersion: v0.22.0
     created: "2023-01-27T13:39:17.515174558Z"
     description: Library of gateeper constraints
@@ -344,6 +355,17 @@ entries:
     - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-constraints-v0.2.2.tgz
     version: v0.2.2
   gatekeeper-library-templates:
+  - apiVersion: v2
+    appVersion: v0.23.0
+    created: "2023-01-27T15:36:11.31259248Z"
+    description: Library of gateeper constraints
+    digest: 576fa9649f5f3015cae4626104bd25f7db058ede0f7b5e447039caa44bc8f6e6
+    home: https://github.com/xenitab/gatekeeper-library
+    name: gatekeeper-library-templates
+    type: application
+    urls:
+    - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-templates-v0.23.0.tgz
+    version: v0.23.0
   - apiVersion: v2
     appVersion: v0.22.0
     created: "2023-01-27T13:39:17.51673634Z"
@@ -685,4 +707,4 @@ entries:
     urls:
     - https://XenitAB.github.io/gatekeeper-library/gatekeeper-library-templates-v0.2.2.tgz
     version: v0.2.2
-generated: "2023-01-27T13:39:17.514635064Z"
+generated: "2023-01-27T15:36:11.31026558Z"
