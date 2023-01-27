@@ -33,6 +33,13 @@ generate: get-external
 		cp $$D $$CONTRAINTS_GENERATED/$$FILENAME
 	done
 
+	MODIFYSETS_LIBRARY=$$(ls -d ./library/modifysets/*)
+	for D in $$MODIFYSETS_LIBRARY
+	do
+		FILENAME=$$(basename $$D)
+		cp $$D $$CONTRAINTS_GENERATED/$$FILENAME
+	done
+
 	CONSTRAINT_LIBRARY=$$(ls -d ./library/constraints/*/)
 	for D in $$CONSTRAINT_LIBRARY
 	do
