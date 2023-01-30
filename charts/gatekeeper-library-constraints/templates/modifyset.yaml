@@ -5,7 +5,7 @@
 apiVersion: mutations.gatekeeper.sh/v1beta1
 kind: ModifySet
 metadata:
-  name: {{ $prefix }}{{ required "Assign name needs to be set" .name }}
+  name: {{ $prefix }}{{ required "ModifySet name needs to be set" .name }}
 spec:
   applyTo: {{- $modifySetData.spec.applyTo | toYaml | nindent 4 }}
   location: {{ quote $modifySetData.spec.location }}
