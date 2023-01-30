@@ -11,3 +11,6 @@ constraints: []
 mutationExcludedNamespaces: ["kube-system", "gatekeeper-system"]
 assigns: []
   #- name: container-read-only-root-fs
+
+modifySets: []
+  #- name: remove-azure-node-spot-taints

@@ -1,14 +1,14 @@
 {{- $prefix := .Values.namePrefix }}
 
-{{- range .Values.modifyset }}
-{{- $modifysetData := $.Files.Get (printf "generated/%s.yaml" .name) | toString | fromYaml }}
+{{- range .Values.modifySets }}
+{{- $modifySetData := $.Files.Get (printf "generated/%s.yaml" .name) | toString | fromYaml }}
 apiVersion: mutations.gatekeeper.sh/v1beta1
 kind: ModifySet
 metadata:
   name: {{ $prefix }}{{ required "ModifySet name needs to be set" .name }}
 spec:
-  applyTo: {{- $modifysetData.spec.applyTo | toYaml | nindent 4 }}
-  location: {{ quote $modifysetData.spec.location }}
-  parameters: {{- $modifysetData.spec.parameters | toYaml | nindent 4 }}
+  applyTo: {{- $modifySetData.spec.applyTo | toYaml | nindent 4 }}
+  location: {{ quote $modifySetData.spec.location }}
+  parameters: {{- $modifySetData.spec.parameters | toYaml | nindent 4 }}
 ---
 {{- end }}
