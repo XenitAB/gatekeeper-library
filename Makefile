@@ -71,9 +71,9 @@ helm-lint:
 	helm lint charts/gatekeeper-library-templates
 
 helm-test:
-	helm plugin install https://github.com/quintush/helm-unittest
-	helm unittest --helm3 charts/gatekeeper-library-constraints
-	helm unittest --helm3 charts/gatekeeper-library-templates
+	helm plugin install --version v0.3.3 https://github.com/helm-unittest/helm-unittest
+	helm unittest charts/gatekeeper-library-constraints
+	helm unittest charts/gatekeeper-library-templates
 
 .PHONY: e2e
 e2e:

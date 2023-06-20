@@ -98,7 +98,17 @@ k8sdisallowanonymous:
         kinds: ["ClusterRoleBinding"]
       - apiGroups: ["rbac.authorization.k8s.io"]
         kinds: ["RoleBinding"]
+k8sdisallowedrepos:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
 k8sdisallowedtags:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+k8scontainerephemeralstoragelimit:
   match:
     kinds:
       - apiGroups: [""]
@@ -108,6 +118,11 @@ k8sexternalips:
     kinds:
       - apiGroups: [""]
         kinds: ["Service"]
+k8shorizontalpodautoscaler:
+  match:
+    kinds:
+      - apiGroups: ["autoscaling"]
+        kinds: ["HorizontalPodAutoscaler"]
 k8shttpsonly:
   match:
     kinds:
@@ -181,6 +196,13 @@ k8suniqueingresshost:
 k8suniqueserviceselector:
   match:
     kinds: {}
+verifydeprecatedapi:
+  match:
+    kinds:
+      - apiGroups: ["apps"]
+        kinds: ["Deployment", "ReplicaSet", "StatefulSet", "DaemonSet"]
+      - apiGroups: ["extensions"]
+        kinds: ["PodSecurityPolicy", "ReplicaSet", "Deployment", "DaemonSet", "NetworkPolicy"]
 k8spspallowprivilegeescalationcontainer:
   match:
     kinds:
